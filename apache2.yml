@@ -1,0 +1,37 @@
+---
+- hosts: webservers
+  tasks:
+    - name: install apache2
+      apt: name=apache2 update_cache=yes state=latest
+
+
+
+    - name: Loome public_html kataloogi userile
+      file:
+       path=/home/sken/public_html
+       owner=sken
+       group=sken
+       mode=0755
+       state=directory
+
+    - name: Lubame userdir mod
+      apache2_module: name=userdir state=present
+
+    - name: Apache2 serverile alglaadimine(restart)
+      service:
+        name: apache2
+        state: restarted
+
+    - name: Kopeerime index.html faili userile public_html
+      copy:
+        src: /var/www/html/index.html
+        dest: /home/sken/public_html/
+        remote_src: yes
+        owner: sken
+        group: sken
+
+    - name: user index.html redigeerimine
+      lineinfile: dest=/home/sken/public_html/index.html
+        regexp="Apache2 Debian Default Page"
+        line="Skeni lehekulg"
+        state=present
