@@ -4,3 +4,5 @@ Selles repositooriumis on 5 erineva skripti:
 - mysql-user.yml : Kirjutatud on skript, mis loob root kausta login faili .my.cnf, kus on mysql login andmed, ning antakse ka õigused kõikide privileegidega mysql kasutajale root.
 - phppaigaldus.yml : Kirjutatud on skript, mis installib antud serverile PhpMyAdmin sevrer ning vahetatakse PMA kausta omanik ning muudetakse õigusi selle kataloogil.
 - wordpress.yml : Kirjutatud on skript, mis installib WordPress tar paketi ja pakib selle lahti antud kataloogi. Kausta omanik vahetati ära ja kopeeriti config fail ning samuti vahetati ka andmebaasi parool, user ja database.
+
+Skripti saame käivitada käsuga 'ansible-playbook /etc/ansible/playbooks *failinimi*.yml'.
